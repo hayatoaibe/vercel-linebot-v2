@@ -8,13 +8,20 @@ WEBSITE_URL = os.getenv('VERCEL_PROJECT_PRODUCTION_URL')
 LINE_ACCESS_TOKEN = os.getenv('LINE_API_TOKEN') # Vercel 環境変数 "LINE_API_TOKEN" (Enviromental Variables) にAPI トークンを設定
 LINE_API_URL = "https://api.line.me/v2/bot/message/reply"
 
+def imageURLs(preview, original):
+    previewUrl = "https://" + WEBSITE_URL + "/images/" + preview
+    originalUrl = "https://" + WEBSITE_URL + "/images/" + original
+    return [{"previewImageUrl":previewUrl},{"originalContentUrl":originalUrl}]
+
 messages = {
-    # "入力メッセージ":["text","メッセージの種類","内容"],
+    # "入力メッセージ":["text","text","内容"], #文字情報の場合
+    # "画像メッセージ":["image"] + imageURLs("画像のプレビュー.jpg", "高解像度版.jpg") # imagesフォルダ内の画像を参照。
 
     "こんにちは":["text","text","こんにちは!"],
     "はじめまして":["text","text", "はじめまして！私はチャットボットです。"],
     "テスト": ["text","text","チャットボットのテスト"],
     "website": ["text","text", WEBSITE_URL],
+    "画像": ["image"] + imageURLs("img01-preview.jpg","img01-hq.jpg")
 
 }
 
