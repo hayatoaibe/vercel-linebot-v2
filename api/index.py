@@ -4,15 +4,17 @@ import os
 
 app = Flask(__name__)
 
+WEBSITE_URL = os.getenv('VERCEL_URL')
 LINE_ACCESS_TOKEN = os.getenv('LINE_API_TOKEN') # Vercel 環境変数 "LINE_API_TOKEN" (Enviromental Variables) にAPI トークンを設定
 LINE_API_URL = "https://api.line.me/v2/bot/message/reply"
 
 messages = {
-    # "入力メッセージ":"返信メッセージ",
+    # "入力メッセージ":["text","メッセージの種類","内容"],
 
-    "こんにちは":"こんにちは!",
-    "はじめまして":"はじめまして！私はチャットボットです。",
-    "テスト": "チャットボットのテスト",
+    "こんにちは":["text","text","こんにちは!"],
+    "はじめまして":["text","text", "はじめまして！私はチャットボットです。"],
+    "テスト": ["text","text","チャットボットのテスト"],
+    "website": ["text","text", WEBSITE_URL],
 
 }
 
@@ -27,7 +29,7 @@ def reply_message(reply_token, text):
     }
     data = {
         "replyToken": reply_token,
-        "messages": [{"type": "text", "text": messages[text]}]
+        "messages": [{"type": messages[text][0], messages[text][1]: messages[text][2]}]
     }
     requests.post(LINE_API_URL, headers=headers, json=data)
 
