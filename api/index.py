@@ -11,17 +11,19 @@ LINE_API_URL = "https://api.line.me/v2/bot/message/reply"
 def imageURLs(preview, original):
     previewUrl = "https://" + WEBSITE_URL + "/images/" + preview
     originalUrl = "https://" + WEBSITE_URL + "/images/" + original
-    return [{"previewImageUrl":previewUrl},{"originalContentUrl":originalUrl}]
+    return [{"type": "image"}, {"previewImageUrl":previewUrl} , {"originalContentUrl":originalUrl}]
+def replyText(string):
+    return [{"type" :"text", "text": string}]
 
 messages = {
     # "入力メッセージ":["text","text","内容"], #文字情報の場合
     # "画像メッセージ":["image"] + imageURLs("画像のプレビュー.jpg", "高解像度版.jpg") # imagesフォルダ内の画像を参照。
 
-    "こんにちは":["text","text","こんにちは!"],
-    "はじめまして":["text","text", "はじめまして！私はチャットボットです。"],
-    "テスト": ["text","text","チャットボットのテスト"],
-    "website": ["text","text", WEBSITE_URL],
-    "画像": ["image"] + imageURLs("img01-preview.jpg","img01-hq.jpg")
+    "こんにちは":replyText("こんにちは!"),
+    "はじめまして":replyText("はじめまして！私はチャットボットです。"),
+    "テスト": replyText("チャットボットのテスト"),
+    "website": replyText(WEBSITE_URL),
+    "画像": imageURLs("img01-preview.jpg","img01-hq.jpg")
 
 }
 
@@ -36,7 +38,7 @@ def reply_message(reply_token, text):
     }
     data = {
         "replyToken": reply_token,
-        "messages": [{"type": messages[text][0], messages[text][1]: messages[text][2]}]
+        "messages": messages[text]
     }
     requests.post(LINE_API_URL, headers=headers, json=data)
 
