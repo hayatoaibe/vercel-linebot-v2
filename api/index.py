@@ -15,7 +15,10 @@ def imageURLs(preview, original):
 def replyText(string):
     return [{"type" :"text", "text": string}]
 
-messages = {
+messages = { 
+
+    # ------------------------------チャットボットのメッセージ部分------------------------------
+    
     # "入力メッセージ":replyText("こんにちは"), #文字情報の場合
     # "画像メッセージ":imageURLs("画像のプレビュー.jpg", "高解像度版.jpg"), # public/imagesフォルダ内の画像を参照。
 
