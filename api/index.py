@@ -16,8 +16,8 @@ def replyText(string):
     return [{"type" :"text", "text": string}]
 
 messages = {
-    # "入力メッセージ":["text","text","内容"], #文字情報の場合
-    # "画像メッセージ":["image"] + imageURLs("画像のプレビュー.jpg", "高解像度版.jpg") # imagesフォルダ内の画像を参照。
+    # "入力メッセージ":replyText("こんにちは"), #文字情報の場合
+    # "画像メッセージ":imageURLs("画像のプレビュー.jpg", "高解像度版.jpg"), # public/imagesフォルダ内の画像を参照。
 
     "こんにちは":replyText("こんにちは!"),
     "はじめまして":replyText("はじめまして！私はチャットボットです。"),
