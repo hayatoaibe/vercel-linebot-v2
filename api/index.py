@@ -11,7 +11,7 @@ LINE_API_URL = "https://api.line.me/v2/bot/message/reply"
 def imageURLs(preview, original):
     previewUrl = "https://" + WEBSITE_URL + "/images/" + preview
     originalUrl = "https://" + WEBSITE_URL + "/images/" + original
-    return [{"type": "image"}, {"previewImageUrl":previewUrl} , {"originalContentUrl":originalUrl}]
+    return [{"type": "image", "previewImageUrl":previewUrl , "originalContentUrl":originalUrl}]
 def replyText(string):
     return [{"type" :"text", "text": string}]
 
@@ -23,7 +23,7 @@ messages = {
     "はじめまして":replyText("はじめまして！私はチャットボットです。"),
     "テスト": replyText("チャットボットのテスト"),
     "website": replyText(WEBSITE_URL),
-    "画像": imageURLs("img01-preview.jpg","img01-hq.jpg")
+    "画像": imageURLs("img01-preview.jpg","img01-hq.jpg"),
 
 }
 
