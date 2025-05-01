@@ -8,7 +8,7 @@ LINE_API_URL = "https://api.line.me/v2/bot/message/reply"
 
 app = Flask(__name__)
 
-def imageURLs(preview, original):
+def postImage(preview, original):
     previewUrl = "https://" + WEBSITE_URL + "/images/" + preview
     originalUrl = "https://" + WEBSITE_URL + "/images/" + original
     return [{"type": "image", "previewImageUrl":previewUrl , "originalContentUrl":originalUrl}]
@@ -21,13 +21,13 @@ messages = {
     # ------------------------------チャットボットのメッセージ部分------------------------------
     
     # "入力メッセージ":replyText("こんにちは"), #文字情報の場合
-    # "画像メッセージ":imageURLs("画像のプレビュー.jpg", "高解像度版.jpg"), # public/imagesフォルダ内の画像を参照。
+    # "画像メッセージ":postImage("画像のプレビュー.jpg", "高解像度版.jpg"), # public/imagesフォルダ内の画像を参照。
 
     "こんにちは":replyText("こんにちは!"),
     "はじめまして":replyText("はじめまして！私はチャットボットです。"),
     "テスト": replyText("チャットボットのテスト"),
     "website": replyText(WEBSITE_URL),
-    "画像": imageURLs("img01-preview.jpg","img01-hq.jpg"),
+    "画像": postImage("img01-preview.jpg","img01-hq.jpg"),
 
 }
 
