@@ -23,11 +23,10 @@ messages = {
     
     # "入力メッセージ":replyText("こんにちは"), #文字情報の場合
     # "画像メッセージ":postImage("画像のプレビュー.jpg", "高解像度版.jpg"), # public/imagesフォルダ内の画像を参照。
-
+    # "テスト": replyText("チャットボットのテスト"),
+    # "website": replyText(WEBSITE_URL),
     "こんにちは":replyText("こんにちは!"),
     "はじめまして":replyText("はじめまして！私はチャットボットです。"),
-    "テスト": replyText("チャットボットのテスト"),
-    "website": replyText(WEBSITE_URL),
     "画像": postImage("img01-preview.jpg","img01-hq.jpg"),
 
 }
