@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 import requests
 import os
 
-WEBSITE_URL = os.getenv('VERCEL_PROJECT_PRODUCTION_URL')
+WEBSITE_URL = os.getenv('VERCEL_PROJECT_PRODUCTION_URL') # (アプリ名).vercel.app
 LINE_ACCESS_TOKEN = os.getenv('LINE_API_TOKEN') # Vercel 環境変数 "LINE_API_TOKEN" (Enviromental Variables) にAPI トークンを設定
 LINE_API_URL = "https://api.line.me/v2/bot/message/reply"
 
