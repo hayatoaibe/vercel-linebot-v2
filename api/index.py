@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 import requests
 import os
+import csv
 
 WEBSITE_URL = os.getenv('VERCEL_PROJECT_PRODUCTION_URL') # (アプリ名).vercel.app
 LINE_ACCESS_TOKEN = os.getenv('LINE_API_TOKEN') # Vercel 環境変数 "LINE_API_TOKEN" (Enviromental Variables) にAPI トークンを設定
@@ -30,6 +31,11 @@ messages = {
     "画像": postImage("img01-preview.jpg","img01-hq.jpg"),
 
 }
+# CSVのメッセージを読み込み
+with open('replies.csv',encoding="utf_8") as file:
+  csv_reader = csv.reader(file)
+  for row in csv_reader:
+    messages.update({row[0] : replyText(row[1])})
 
 @app.route("/")
 def hello():
