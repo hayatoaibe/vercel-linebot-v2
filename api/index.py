@@ -2,16 +2,17 @@ from flask import Flask, request, jsonify
 import requests
 import os
 
-app = Flask(__name__)
-
 WEBSITE_URL = os.getenv('VERCEL_PROJECT_PRODUCTION_URL')
 LINE_ACCESS_TOKEN = os.getenv('LINE_API_TOKEN') # Vercel 環境変数 "LINE_API_TOKEN" (Enviromental Variables) にAPI トークンを設定
 LINE_API_URL = "https://api.line.me/v2/bot/message/reply"
+
+app = Flask(__name__)
 
 def imageURLs(preview, original):
     previewUrl = "https://" + WEBSITE_URL + "/images/" + preview
     originalUrl = "https://" + WEBSITE_URL + "/images/" + original
     return [{"type": "image", "previewImageUrl":previewUrl , "originalContentUrl":originalUrl}]
+
 def replyText(string):
     return [{"type" :"text", "text": string}]
 
