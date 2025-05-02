@@ -30,6 +30,9 @@ messages = {
     "画像": postImage("img01-preview.jpg","img01-hq.jpg"),
 
 }
+
+GENERAL_MESSAGE = "すみません、うまく理解できませんでした。" # 言葉に対応した返事ができない場合の文を書く
+
 # CSVのメッセージを読み込み
 with open('replies.csv',encoding="utf_8") as file:
   csv_reader = csv.reader(file)
@@ -40,7 +43,7 @@ def makeResponse(text):
     try: 
         return messages[text]
     except KeyError: 
-        return GENERAL_REPLIES
+        return GENERAL_MESSAGE
 
 @app.route("/")
 def hello():
