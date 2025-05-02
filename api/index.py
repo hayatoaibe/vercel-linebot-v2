@@ -51,7 +51,7 @@ def reply_message(reply_token, text):
     }
     data = {
         "replyToken": reply_token,
-        "messages": messages.get(text,GENERAL_REPLIES)
+        "messages": messages.get(text,GENERAL_MESSAGE)
     }
     requests.post(LINE_API_URL, headers=headers, json=data)
 
