@@ -31,7 +31,7 @@ messages = {
 
 }
 
-GENERAL_MESSAGE = "すみません、うまく理解できませんでした。" # 言葉に対応した返事ができない場合の文を書く
+GENERAL_MESSAGE = ["すみません、うまく理解できませんでした。"] # 言葉に対応した返事ができない場合の文を書く
 
 # CSVのメッセージを読み込み
 with open('replies.csv',encoding="utf_8") as file:
