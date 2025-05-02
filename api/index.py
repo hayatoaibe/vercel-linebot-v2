@@ -36,6 +36,7 @@ GENERAL_MESSAGE = "すみません、うまく理解できませんでした。"
 # CSVのメッセージを読み込み
 with open('replies.csv',encoding="utf_8") as file:
   csv_reader = csv.reader(file)
+  header = next(csv_reader) # 最初の1行は無視
   for row in csv_reader:
     messages.update({row[0] : replyText(row[1])})
 
