@@ -36,6 +36,12 @@ with open('replies.csv',encoding="utf_8") as file:
   for row in csv_reader:
     messages.update({row[0] : replyText(row[1])})
 
+def makeResponse(text):
+    try: 
+        return messages[text]
+    except KeyError: 
+        return GENERAL_REPLIES
+
 @app.route("/")
 def hello():
     return "<h1>Hello, World!</h1>"
@@ -47,7 +53,7 @@ def reply_message(reply_token, text):
     }
     data = {
         "replyToken": reply_token,
-        "messages": messages[text]
+        "messages": makeResponse(text)
     }
     requests.post(LINE_API_URL, headers=headers, json=data)
 
