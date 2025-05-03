@@ -31,7 +31,7 @@ messages = {
 
 }
 
-GENERAL_MESSAGE = ["すみません、うまく理解できませんでした。"] # 言葉に対応した返事ができない場合の文を書く
+GENERAL_MESSAGE = "すみません、うまく理解できませんでした。" # 言葉に対応した返事ができない場合の文を書く
 
 # CSVのメッセージを読み込み
 with open('replies.csv',encoding="utf_8") as file:
@@ -39,6 +39,8 @@ with open('replies.csv',encoding="utf_8") as file:
   header = next(csv_reader) # 最初の1行は無視
   for row in csv_reader:
     messages.update({row[0] : replyText(row[1])})
+
+GENERAL_MESSAGE = replyText(GENERAL_MESSAGE)
 
 @app.route("/")
 def hello():
@@ -51,7 +53,7 @@ def reply_message(reply_token, text):
     }
     data = {
         "replyToken": reply_token,
-        "messages": messages.get(text,GENERAL_MESSAGE[0])
+        "messages": messages.get(text,GENERAL_MESSAGE)
     }
     print(data) # reply_debug
     requests.post(LINE_API_URL, headers=headers, json=data)
