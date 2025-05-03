@@ -55,7 +55,7 @@ def reply_message(reply_token, text):
         "replyToken": reply_token,
         "messages": messages.get(text,GENERAL_MESSAGE)
     }
-    print("返信: " + str(data["message"])) # reply_debug
+    print("返信: " + str(data["messages"])) # reply_debug
     requests.post(LINE_API_URL, headers=headers, json=data)
 
 @app.route("/webhook", methods=["POST"])
