@@ -62,6 +62,7 @@ def webhook():
         for event in body["events"]:
             if event["type"] == "message" and event["message"]["type"] == "text":
                 reply_message(event["replyToken"], event["message"]["text"])
+                print(event) # Debug
     return jsonify({"status": "ok"}), 200
 
 if __name__ == "__main__":
