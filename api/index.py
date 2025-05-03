@@ -55,7 +55,7 @@ def reply_message(reply_token, text):
         "replyToken": reply_token,
         "messages": messages.get(text,GENERAL_MESSAGE)
     }
-    print(data) # reply_debug
+    print("返信: " + data["messages"]) # reply_debug
     requests.post(LINE_API_URL, headers=headers, json=data)
 
 @app.route("/webhook", methods=["POST"])
@@ -65,6 +65,7 @@ def webhook():
         for event in body["events"]:
             if event["type"] == "message" and event["message"]["type"] == "text":
                 reply_message(event["replyToken"], event["message"]["text"])
+                print("ユーザーの入力: " + event["message"]) #response_debug
     return jsonify({"status": "ok"}), 200
 
 if __name__ == "__main__":
