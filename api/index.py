@@ -7,6 +7,8 @@ WEBSITE_URL = os.getenv('VERCEL_PROJECT_PRODUCTION_URL') # (アプリ名).vercel
 LINE_ACCESS_TOKEN = os.getenv('LINE_API_TOKEN') # Vercel 環境変数 "LINE_API_TOKEN" (Enviromental Variables) にAPI トークンを設定
 LINE_API_URL = "https://api.line.me/v2/bot/message/reply"
 
+policy = open("../policy.html")
+
 app = Flask(__name__)
 
 def postImage(preview, original):
@@ -44,7 +46,7 @@ GENERAL_MESSAGE = replyText(GENERAL_MESSAGE)
 
 @app.route("/")
 def hello():
-    return "<h1>Hello, World!</h1>"
+    return policy.read()
 
 def reply_message(reply_token, text):
     headers = {
